@@ -1,0 +1,78 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://FlickeringTorch.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Column.tscn" type="PackedScene" id=2]
+[ext_resource path="res://textures/test_hero.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/Hero.gd" type="Script" id=4]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 0.0941176, 0.0666667, 0.0431373, 1, 0.0941176, 0.0666667, 0.0431373, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 14.0
+height = 14.0
+
+[node name="MainScene" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 509, 300.25 )
+scale = Vector2( 0.499023, 601.5 )
+texture = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.392157, 0.392157, 0.392157, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Lights" type="Node2D" parent="."]
+
+[node name="Flickering Torch2" parent="Lights" instance=ExtResource( 1 )]
+position = Vector2( 730, 161 )
+
+[node name="Flickering Torch3" parent="Lights" instance=ExtResource( 1 )]
+position = Vector2( 382, 54 )
+
+[node name="Occluders" type="Node2D" parent="."]
+
+[node name="Column" parent="Occluders" instance=ExtResource( 2 )]
+position = Vector2( 406, 148 )
+
+[node name="Column2" parent="Occluders" instance=ExtResource( 2 )]
+position = Vector2( 678, 258 )
+
+[node name="Column3" parent="Occluders" instance=ExtResource( 2 )]
+position = Vector2( 354, 260 )
+
+[node name="Column4" parent="Occluders" instance=ExtResource( 2 )]
+position = Vector2( 385, 260 )
+
+[node name="Column5" parent="Occluders" instance=ExtResource( 2 )]
+position = Vector2( 415, 260 )
+
+[node name="Column6" parent="Occluders" instance=ExtResource( 2 )]
+position = Vector2( 442, 260 )
+
+[node name="Hero" type="KinematicBody2D" parent="."]
+position = Vector2( 92, 407 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hero"]
+visible = false
+position = Vector2( -1, 0 )
+shape = SubResource( 3 )
+
+[node name="Hero" type="Sprite" parent="Hero"]
+texture = ExtResource( 3 )
+
+[node name="Flickering Torch" parent="Hero" instance=ExtResource( 1 )]
+position = Vector2( 11, -9 )
